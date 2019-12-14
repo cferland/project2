@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
+import Proficiencies from './components/Proficiencies';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,26 @@ class App extends Component {
     console.log(this.state.class);
   }
 
+  createCharacter(e) {
+    e.preventDefault();
+    let character = {
+      hitDie: this.state.class.hit_die,
+      strength: 10 + this.state.race.ability_bonuses[0],
+      dexterity: 10 + this.state.race.ability_bonuses[1],
+      constitution: 10 + this.state.race.ability_bonuses[2],
+      intellect: 10 + this.state.race.ability_bonuses[3],
+      wisdom: 10 + this.state.race.ability_bonuses[4],
+      charisma: 10 + this.state.race.ability_bonuses[5],
+      race: this.state.race.name,
+      class: this.state.class.name
+    }
+    this.setState({
+      character: character
+
+    })
+    console.log(this.state.character)
+  }
+
   render() {
     return (
       <div className="App">
@@ -48,6 +70,7 @@ class App extends Component {
           {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
             return (<Proficiencies key={index} choiceSet={choiceSet} />)
           })}
+          <button onClick={(e) => this.createCharacter(e)}>Create Character</button>
         </form>
       </div>
     );
