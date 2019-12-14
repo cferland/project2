@@ -9,10 +9,19 @@ class App extends Component {
     super(props);
 
     this.state = {
+      races: [],
       race: {},
       class: {},
       character: {}
     }
+  }
+
+  async componentDidMount() {
+    let races = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/races/`);
+    this.setState({
+      races: races.data.results
+    })
+    console.log(this.state.races);
   }
 
   async pickRace(e) {
@@ -46,7 +55,6 @@ class App extends Component {
     }
     this.setState({
       character: character
-
     })
     console.log(this.state.character)
   }
@@ -55,12 +63,13 @@ class App extends Component {
     return (
       <div className="App">
         <form>
-          <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
-            <option disabled>Pick a Race</option>
-            <option value="1">Dwarf</option>
-            <option value="2">Elf</option>
-            <option value="3">Halfling</option>
-          </select>
+          {this.state.races.length > 0 &&
+            <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
+              <option disabled>Pick a Race</option>
+              {this.state.races.map((race, index) => {
+                return (<option value={index + 1}>{race.name}</option>)
+              })}
+            </select>}
           <select onChange={(e) => this.pickClass(e)} defaultValue="Pick a Class">
             <option disabled>Pick a Class</option>
             <option value="1">Barbarian</option>
