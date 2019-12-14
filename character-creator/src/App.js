@@ -45,6 +45,9 @@ class App extends Component {
             <option value="2">Bard</option>
             <option value="3">Cleric</option>
           </select>
+          {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
+            return (<Proficiencies key={index} choiceSet={choiceSet} />)
+          })}
         </form>
       </div>
     );
