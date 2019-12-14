@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      race: {},
+      class: {},
+      character: {}
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
       
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
