@@ -71,4 +71,5 @@ _Component Breakdown_
 
 - Add ability to create and save multiple characters.
 - Implement dice-rolling functionality for generating ability scores.
+- Incorporate random name generator for new characters.
 - Add ability to automatically level up characters and render an updated character sheet.
