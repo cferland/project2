@@ -13,6 +13,14 @@ class App extends Component {
     }
   }
 
+  async pickRace(e) {
+    let newRace = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/races/${e.target.value}`);
+    this.setState({
+      race: newRace.data
+    })
+    console.log(this.state.race);
+  }
+
   async pickClass(e) {
     let newClass = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/classes/${e.target.value}`);
     this.setState({
@@ -25,6 +33,12 @@ class App extends Component {
     return (
       <div className="App">
         <form>
+          <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
+            <option disabled>Pick a Race</option>
+            <option value="1">Dwarf</option>
+            <option value="2">Elf</option>
+            <option value="3">Halfling</option>
+          </select>
           <select onChange={(e) => this.pickClass(e)} defaultValue="Pick a Class">
             <option disabled>Pick a Class</option>
             <option value="1">Barbarian</option>
