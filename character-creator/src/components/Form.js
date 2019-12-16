@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Proficiencies from './Proficiencies';
+import AbilityScores from './AbilityScores';
 
 class Form extends Component {
   constructor(props) {
@@ -82,6 +83,9 @@ class Form extends Component {
         {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
           return (<Proficiencies key={index} choiceSet={choiceSet} />)
         })}
+        {this.state.race.ability_bonuses && 
+          <AbilityScores abilities={this.state.race.ability_bonuses} />
+        }
         <button onClick={(e) => this.createCharacter(e)}>Create Character</button>
       </form>
     )
