@@ -7,12 +7,12 @@ function CharacterSheet(props) {
       <h3>Level 1 {props.character.race} {props.character.class}</h3>
       <h4>Hit Points: {props.character.hitDie}</h4>
       <h2>Abilities</h2>
-      <h4>STR: {props.character.abilities.str}</h4>
-      <h4>DEX: {props.character.abilities.dex}</h4>
-      <h4>CON: {props.character.abilities.con}</h4>
-      <h4>INT: {props.character.abilities.int}</h4>
-      <h4>WIS: {props.character.abilities.wis}</h4>
-      <h4>CHA: {props.character.abilities.cha}</h4>
+      <h4>STR: {props.character.abilities.str} ({props.character.modifiers.str >= 0 ? "+" : ""}{props.character.modifiers.str})</h4>
+      <h4>DEX: {props.character.abilities.dex} ({props.character.modifiers.dex >= 0 ? "+" : ""}{props.character.modifiers.dex})</h4>
+      <h4>CON: {props.character.abilities.con} ({props.character.modifiers.con >= 0 ? "+" : ""}{props.character.modifiers.con})</h4>
+      <h4>INT: {props.character.abilities.int} ({props.character.modifiers.int >= 0 ? "+" : ""}{props.character.modifiers.int})</h4>
+      <h4>WIS: {props.character.abilities.wis} ({props.character.modifiers.wis >= 0 ? "+" : ""}{props.character.modifiers.wis})</h4>
+      <h4>CHA: {props.character.abilities.cha} ({props.character.modifiers.cha >= 0 ? "+" : ""}{props.character.modifiers.cha})</h4>
       <ul>
         <h2>Skills</h2>
         <li className={props.character.proficiencies.includes('Skill: Athletics') ? "selected" : "unselected"}>Athletics</li>
