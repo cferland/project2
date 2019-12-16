@@ -103,11 +103,19 @@ class Form extends Component {
     let proficiencies = this.state.proficiencies;
     this.state.class.proficiencies.forEach((proficiency) => proficiencies.push(proficiency.name));
     this.state.race.starting_proficiencies.forEach((proficiency) => proficiencies.push(proficiency.name));
-    console.log(proficiencies);
+    let modifiers = {
+      str: Math.floor((this.state.abilities.str - 10) / 2),
+      dex: Math.floor((this.state.abilities.dex - 10) / 2),
+      con: Math.floor((this.state.abilities.con - 10) / 2),
+      int: Math.floor((this.state.abilities.int - 10) / 2),
+      wis: Math.floor((this.state.abilities.wis - 10) / 2),
+      cha: Math.floor((this.state.abilities.cha - 10) / 2)
+    }
     let character = {
       hitDie: this.state.class.hit_die,
       proficiencies: proficiencies,
       abilities: this.state.abilities,
+      modifiers: modifiers,
       race: this.state.race.name,
       class: this.state.class.name
     }
@@ -120,7 +128,7 @@ class Form extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/" render={(props) =>
+        <Route exact default path="/" render={(props) =>
           <form>
             {this.state.races.length > 0 &&
               <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
@@ -148,7 +156,7 @@ class Form extends Component {
           </form>
         } />
         <Route path="/character" render={(props) => 
-          <CharacterSheet character={this.state.character} />
+          this.state.character.abilities ? <CharacterSheet character={this.state.character} /> : <Link to="/">Go Back</Link>
         } />
       </div>
     )
