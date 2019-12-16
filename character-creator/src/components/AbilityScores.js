@@ -5,24 +5,19 @@ class AbilityScores extends Component {
     super(props);
 
     this.state = {
-      strength: 10 + props.abilities[0],
-      dexterity: 10 + props.abilities[1],
-      constitution: 10 + props.abilities[2],
-      intellect: 10 + props.abilities[3],
-      wisdom: 10 + props.abilities[4],
-      charisma: 10 + props.abilities[5]
+
     }
   }
 
   render() {
     return (
       <ul>
-        <li >STR: {this.state.strength}</li>
-        <li >DEX: {this.state.dexterity}</li>
-        <li >CON: {this.state.constitution}</li>
-        <li >INT: {this.state.intellect}</li>
-        <li >WIS: {this.state.wisdom}</li>
-        <li >CHA: {this.state.charisma}</li>
+        <li ><button onClick={(e) => this.props.abilityButton(e, 'minus', 'str')}>-</button>STR: {this.props.abilities.str}<button onClick={(e) => this.props.abilityButton(e, 'plus', 'str')}>+</button></li>
+        <li ><button onClick={(e) => this.props.abilityButton(e, 'minus', 'dex')}>-</button>DEX: {this.props.abilities.dex}<button onClick={(e) => this.props.abilityButton(e, 'plus', 'dex')}>+</button></li>
+        <li ><button onClick={(e) => this.props.abilityButton(e, 'minus', 'con')}>-</button>CON: {this.props.abilities.con}<button onClick={(e) => this.props.abilityButton(e, 'plus', 'con')}>+</button></li>
+        <li >INT: {this.props.abilities.int}</li>
+        <li >WIS: {this.props.abilities.wis}</li>
+        <li >CHA: {this.props.abilities.cha}</li>
       </ul>
     )
   }

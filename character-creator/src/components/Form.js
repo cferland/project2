@@ -15,11 +15,19 @@ class Form extends Component {
       race: {},
       class: {},
       proficiencies: [],
-      abilities: [],
+      abilities: {
+        str: 0,
+        dex: 0,
+        con: 0,
+        int: 0,
+        wis: 0,
+        cha: 0
+      },
       character: {}
     }
 
     this.handleCheck = this.handleCheck.bind(this);
+    this.abilityButton = this.abilityButton.bind(this);
   }
 
   async componentDidMount() {
@@ -29,14 +37,20 @@ class Form extends Component {
       races: races.data.results,
       classes: classes.data.results
     })
-    console.log(this.state.races);
   }
 
   async pickRace(e) {
     let newRace = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/races/${e.target.value}`);
     this.setState({
       race: newRace.data,
-      abilities: newRace.data.ability_bonuses
+      abilities: {
+        str: newRace.data.ability_bonuses[0],
+        dex: newRace.data.ability_bonuses[1],
+        con: newRace.data.ability_bonuses[2],
+        int: newRace.data.ability_bonuses[3],
+        wis: newRace.data.ability_bonuses[4],
+        cha: newRace.data.ability_bonuses[5]
+      } 
     })
     console.log(this.state.race);
     console.log(this.state.abilities);
@@ -64,9 +78,24 @@ class Form extends Component {
     this.setState({
       proficiencies: proficiencies
     })
-    console.log(this.state.proficiencies);
-    console.log(proficiencies.indexOf(proficiency));
-    console.log(proficiency);
+  }
+
+  abilityButton(e, operator, ability) {
+    e.preventDefault();
+    let score = this.state.abilities[ability];
+    if (operator === 'minus') {
+      score--;
+    }
+    if (operator === 'plus') {
+      score++;
+    }
+    console.log(this.state.abilities[ability]);
+    this.setState(prevState =>({
+      abilities: {
+        ...prevState.abilities,
+        [ability]: score
+      },
+    }))
   }
 
   createCharacter(e) {
@@ -104,7 +133,7 @@ class Form extends Component {
           return (<Proficiencies key={index} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
         })}
         {this.state.race.ability_bonuses && 
-          <AbilityScores abilities={this.state.abilities} />
+          <AbilityScores abilities={this.state.abilities} abilityButton={this.abilityButton} />
         }
         <button onClick={(e) => this.createCharacter(e)}>Create Character</button>
       </form>
