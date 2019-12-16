@@ -15,6 +15,7 @@ class Form extends Component {
       race: {},
       class: {},
       proficiencies: [],
+      abilities: [],
       character: {}
     }
 
@@ -34,9 +35,11 @@ class Form extends Component {
   async pickRace(e) {
     let newRace = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/races/${e.target.value}`);
     this.setState({
-      race: newRace.data
+      race: newRace.data,
+      abilities: newRace.data.ability_bonuses
     })
     console.log(this.state.race);
+    console.log(this.state.abilities);
   }
 
   async pickClass(e) {
@@ -70,12 +73,6 @@ class Form extends Component {
     e.preventDefault();
     let character = {
       hitDie: this.state.class.hit_die,
-      strength: 10 + this.state.race.ability_bonuses[0],
-      dexterity: 10 + this.state.race.ability_bonuses[1],
-      constitution: 10 + this.state.race.ability_bonuses[2],
-      intellect: 10 + this.state.race.ability_bonuses[3],
-      wisdom: 10 + this.state.race.ability_bonuses[4],
-      charisma: 10 + this.state.race.ability_bonuses[5],
       proficiencies: this.state.proficiencies,
       race: this.state.race.name,
       class: this.state.class.name
@@ -107,7 +104,7 @@ class Form extends Component {
           return (<Proficiencies key={index} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
         })}
         {this.state.race.ability_bonuses && 
-          <AbilityScores abilities={this.state.race.ability_bonuses} />
+          <AbilityScores abilities={this.state.abilities} />
         }
         <button onClick={(e) => this.createCharacter(e)}>Create Character</button>
       </form>
