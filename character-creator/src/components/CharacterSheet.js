@@ -34,6 +34,14 @@ function CharacterSheet(props) {
         <li className={props.character.proficiencies.includes('Skill: Intimidation') ? "selected" : "unselected"}>Intimidation</li>
         <li className={props.character.proficiencies.includes('Skill: Performance') ? "selected" : "unselected"}>Performance</li>
       </ul>
+      <ul>
+        <h2>Other Proficiencies</h2>
+        {props.character.proficiencies.filter((proficiency) => !proficiency.includes('Skill:')).map((proficiency, index) => {
+          return (
+            <li key={index}>{proficiency}</li>
+          )
+        })}
+      </ul>
     </div>
   )
 }
