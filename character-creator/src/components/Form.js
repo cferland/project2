@@ -100,9 +100,13 @@ class Form extends Component {
   }
 
   createCharacter(e) {
+    let proficiencies = this.state.proficiencies;
+    this.state.class.proficiencies.forEach((proficiency) => proficiencies.push(proficiency.name));
+    this.state.race.starting_proficiencies.forEach((proficiency) => proficiencies.push(proficiency.name));
+    console.log(proficiencies);
     let character = {
       hitDie: this.state.class.hit_die,
-      proficiencies: this.state.proficiencies,
+      proficiencies: proficiencies,
       abilities: this.state.abilities,
       race: this.state.race.name,
       class: this.state.class.name
