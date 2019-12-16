@@ -1,3 +1,12 @@
+header {
+  text-align: center;
+  background-color: #554444;
+  color: #eeeeee;
+  font-size: 35px;
+  padding: 25px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
 .App {
   text-align: center;
 }
