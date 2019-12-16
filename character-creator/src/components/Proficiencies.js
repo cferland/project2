@@ -5,14 +5,22 @@ class Proficiencies extends Component {
     super(props);
 
     this.state = {
-      checked: 0,
-      limit: props.choiceSet.choose
+      checked: 0
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.class !== prevProps.class) {
+      this.setState({
+        checked: 0
+      })
     }
   }
 
   limitCheck = (event) => {
+    let limit = this.props.choiceSet.choose;
     if (event.target.defaultChecked === false) {
-      if (this.state.checked < this.state.limit) {
+      if (this.state.checked < limit) {
         this.setState({
           checked: this.state.checked + 1
         })
@@ -20,11 +28,11 @@ class Proficiencies extends Component {
       } else {
         event.preventDefault();
         alert(
-          `You can only choose ${this.state.limit} proficiencies from this category!`
+          `You can only choose ${limit} proficiencies from this category!`
         );
       }
     } else if (event.target.defaultChecked === true) {
-      if (this.state.checked <= this.state.limit) {
+      if (this.state.checked <= limit) {
         this.setState({
           checked: this.state.checked - 1
         })
@@ -39,7 +47,7 @@ class Proficiencies extends Component {
         <h5>Choose {this.props.choiceSet.choose}</h5>
         {this.props.choiceSet.from.map((option, index) => {
           return (
-            <div key={index}>
+            <div key={index + this.props.class}>
               <input
                 type="checkbox"
                 onClick={(event) => this.limitCheck(event)}

@@ -137,7 +137,7 @@ class Form extends Component {
                 })}
               </select>}
             {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
-              return (<Proficiencies key={index} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
+              return (<Proficiencies key={index} class={this.state.class.name} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
             })}
             {this.state.race.ability_bonuses &&
               <AbilityScores abilities={this.state.abilities} abilityButton={this.abilityButton} />
