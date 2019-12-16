@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.selected {
+  font-weight: bold;
+}
+
+.unselected {
+  color: #666;
+}
