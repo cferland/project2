@@ -5,7 +5,8 @@ function CharacterSheet(props) {
     <div>
       <h1>NAME:</h1>
       <h3>Level 1 {props.character.race} {props.character.class}</h3>
-      <h4>Hit Points: {props.character.hitDie}</h4>
+      <h4>Hit Points: {props.character.hitDie + props.character.modifiers.con} (1d{props.character.hitDie})</h4>
+      <h4>Armor Class: {10 + props.character.modifiers.dex}</h4>
       <h2>Abilities</h2>
       <h4>STR: {props.character.abilities.str} ({props.character.modifiers.str >= 0 ? "+" : ""}{props.character.modifiers.str})</h4>
       <h4>DEX: {props.character.abilities.dex} ({props.character.modifiers.dex >= 0 ? "+" : ""}{props.character.modifiers.dex})</h4>
