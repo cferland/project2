@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 
 import Proficiencies from './Proficiencies';
 import AbilityScores from './AbilityScores';
+import CharacterSheet from './CharacterSheet';
 
 class Form extends Component {
   constructor(props) {
@@ -44,12 +46,12 @@ class Form extends Component {
     this.setState({
       race: newRace.data,
       abilities: {
-        str: newRace.data.ability_bonuses[0],
-        dex: newRace.data.ability_bonuses[1],
-        con: newRace.data.ability_bonuses[2],
-        int: newRace.data.ability_bonuses[3],
-        wis: newRace.data.ability_bonuses[4],
-        cha: newRace.data.ability_bonuses[5]
+        str: 8 + newRace.data.ability_bonuses[0],
+        dex: 8 + newRace.data.ability_bonuses[1],
+        con: 8 + newRace.data.ability_bonuses[2],
+        int: 8 + newRace.data.ability_bonuses[3],
+        wis: 8 + newRace.data.ability_bonuses[4],
+        cha: 8 + newRace.data.ability_bonuses[5]
       } 
     })
     console.log(this.state.race);
@@ -80,63 +82,71 @@ class Form extends Component {
     })
   }
 
-  abilityButton(e, operator, ability) {
+  abilityButton(e, operator, ability, index) {
     e.preventDefault();
     let score = this.state.abilities[ability];
-    if (operator === 'minus') {
+    if (operator === 'minus' && score > 0) {
       score--;
     }
-    if (operator === 'plus') {
+    if (operator === 'plus' && score < (18 + this.state.race.ability_bonuses[index])) {
       score++;
     }
-    console.log(this.state.abilities[ability]);
     this.setState(prevState =>({
       abilities: {
         ...prevState.abilities,
-        [ability]: score
+        [ability]: score 
       },
     }))
   }
 
   createCharacter(e) {
-    e.preventDefault();
     let character = {
       hitDie: this.state.class.hit_die,
       proficiencies: this.state.proficiencies,
+      abilities: this.state.abilities,
       race: this.state.race.name,
       class: this.state.class.name
     }
     this.setState({
       character: character
     })
-    console.log(this.state.character)
+    
   }
 
   render() {
     return (
-      <form>
-        {this.state.races.length > 0 &&
-          <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
-            <option disabled>Pick a Race</option>
-            {this.state.races.map((option, index) => {
-              return (<option key={index} value={index + 1}>{option.name}</option>)
+      <div>
+        <Route exact path="/" render={(props) =>
+          <form>
+            {this.state.races.length > 0 &&
+              <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
+                <option disabled>Pick a Race</option>
+                {this.state.races.map((option, index) => {
+                  return (<option key={index} value={index + 1}>{option.name}</option>)
+                })}
+              </select>}
+            {this.state.classes.length > 0 &&
+              <select onChange={(e) => this.pickClass(e)} defaultValue="Pick a Class">
+                <option disabled>Pick a Class</option>
+                {this.state.classes.map((option, index) => {
+                  return (<option key={index} value={index + 1}>{option.name}</option>)
+                })}
+              </select>}
+            {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
+              return (<Proficiencies key={index} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
             })}
-          </select>}
-        {this.state.classes.length > 0 &&
-          <select onChange={(e) => this.pickClass(e)} defaultValue="Pick a Class">
-            <option disabled>Pick a Class</option>
-            {this.state.classes.map((option, index) => {
-              return (<option key={index} value={index + 1}>{option.name}</option>)
-            })}
-          </select>}
-        {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
-          return (<Proficiencies key={index} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
-        })}
-        {this.state.race.ability_bonuses && 
-          <AbilityScores abilities={this.state.abilities} abilityButton={this.abilityButton} />
-        }
-        <button onClick={(e) => this.createCharacter(e)}>Create Character</button>
-      </form>
+            {this.state.race.ability_bonuses &&
+              <AbilityScores abilities={this.state.abilities} abilityButton={this.abilityButton} />
+            }
+            <Link to="/character" onClick={(e) => this.createCharacter(e)}>
+              <button>Create Character</button>
+            </Link>
+          </form>
+        } />
+        <Route path="/character" render={(props) => 
+          <CharacterSheet character={this.state.character} />
+        } />
+      </div>
     )
   }
 }
