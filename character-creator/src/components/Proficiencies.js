@@ -10,7 +10,7 @@ class Proficiencies extends Component {
     }
   }
 
-  handleCheck = (event) => {
+  limitCheck = (event) => {
     if (event.target.defaultChecked === false) {
       if (this.state.checked < this.state.limit) {
         this.setState({
@@ -35,15 +35,16 @@ class Proficiencies extends Component {
 
   render() {
     return (
-      <div key={this.props.index}>
+      <div>
         <h5>Choose {this.props.choiceSet.choose}</h5>
         {this.props.choiceSet.from.map((option, index) => {
           return (
             <div key={index}>
               <input
                 type="checkbox"
-                onClick={(event) => this.handleCheck(event)}
-                name={option.type}
+                onClick={(event) => this.limitCheck(event)}
+                onChange={this.props.handleCheck}
+                name={option.name}
                 value={option.url}
               />
               {option.name}

@@ -14,8 +14,11 @@ class Form extends Component {
       classes: [],
       race: {},
       class: {},
+      proficiencies: [],
       character: {}
     }
+
+    this.handleCheck = this.handleCheck.bind(this);
   }
 
   async componentDidMount() {
@@ -44,6 +47,25 @@ class Form extends Component {
     console.log(this.state.class);
   }
 
+  handleCheck(e) {
+    let proficiency = e.target.name;
+    let proficiencies = this.state.proficiencies;
+    if (e.target.defaultChecked === true) {
+      proficiencies.push(proficiency);
+    }
+    if (e.target.defaultChecked === false) {
+      if (proficiencies.indexOf(proficiency) !== -1) {
+        proficiencies.splice(proficiencies.indexOf(proficiency), 1);
+      }
+    }
+    this.setState({
+      proficiencies: proficiencies
+    })
+    console.log(this.state.proficiencies);
+    console.log(proficiencies.indexOf(proficiency));
+    console.log(proficiency);
+  }
+
   createCharacter(e) {
     e.preventDefault();
     let character = {
@@ -54,6 +76,7 @@ class Form extends Component {
       intellect: 10 + this.state.race.ability_bonuses[3],
       wisdom: 10 + this.state.race.ability_bonuses[4],
       charisma: 10 + this.state.race.ability_bonuses[5],
+      proficiencies: this.state.proficiencies,
       race: this.state.race.name,
       class: this.state.class.name
     }
@@ -70,18 +93,18 @@ class Form extends Component {
           <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
             <option disabled>Pick a Race</option>
             {this.state.races.map((option, index) => {
-              return (<option value={index + 1}>{option.name}</option>)
+              return (<option key={index} value={index + 1}>{option.name}</option>)
             })}
           </select>}
         {this.state.classes.length > 0 &&
           <select onChange={(e) => this.pickClass(e)} defaultValue="Pick a Class">
             <option disabled>Pick a Class</option>
             {this.state.classes.map((option, index) => {
-              return (<option value={index + 1}>{option.name}</option>)
+              return (<option key={index} value={index + 1}>{option.name}</option>)
             })}
           </select>}
         {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
-          return (<Proficiencies key={index} choiceSet={choiceSet} />)
+          return (<Proficiencies key={index} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
         })}
         {this.state.race.ability_bonuses && 
           <AbilityScores abilities={this.state.race.ability_bonuses} />

@@ -17,12 +17,12 @@ class AbilityScores extends Component {
   render() {
     return (
       <ul>
-        <li>STR: {this.state.strength}</li>
-        <li>DEX: {this.state.dexterity}</li>
-        <li>CON: {this.state.constitution}</li>
-        <li>INT: {this.state.intellect}</li>
-        <li>WIS: {this.state.wisdom}</li>
-        <li>CHA: {this.state.charisma}</li>
+        <li >STR: {this.state.strength}</li>
+        <li >DEX: {this.state.dexterity}</li>
+        <li >CON: {this.state.constitution}</li>
+        <li >INT: {this.state.intellect}</li>
+        <li >WIS: {this.state.wisdom}</li>
+        <li >CHA: {this.state.charisma}</li>
       </ul>
     )
   }
