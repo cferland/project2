@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Redirect } from 'react-router-dom';
 
 import Proficiencies from './Proficiencies';
 import AbilityScores from './AbilityScores';
@@ -160,13 +160,13 @@ class Form extends Component {
             </div>
             {this.state.race.name && this.state.class.name &&
               <Link to="/character" onClick={(e) => this.createCharacter(e)}>
-                <button>Create Character</button>
+                <button className="create">Finish</button>
               </Link>
             }
           </form>
         } />
         <Route path="/character" render={(props) =>
-          this.state.character.abilities ? <CharacterSheet character={this.state.character} /> : <Link to="/">Go Back</Link>
+          this.state.character.abilities ? <CharacterSheet character={this.state.character} /> : <Redirect to="/">Go Back</Redirect>
         } />
       </div>
     )

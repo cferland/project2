@@ -1,9 +1,10 @@
 header {
   text-align: center;
-  background-color: #554444;
+  background-color: #ee3344;
   color: #ffffff;
   font-size: 35px;
   padding: 25px;
+  border-bottom: 1px outset #ff4455;
 }
 
 h5 {
@@ -25,6 +26,7 @@ ul {
 
 form {
   padding: 20px;
+  margin-top: 10px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -222,6 +224,28 @@ button:focus {
 .selected {
   background-color: #222222;
   border: 1px outset #554444;
+}
+
+.create {
+  width: 150px;
+  height: 30px;
+  border: 1px outset #ff4455;
+  background-color: #ee3344;
+  color: #ffffff;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 14px;
+  margin: 15px;
+}
+
+.create:hover {
+  background-color: #ff4455;
+  cursor: pointer;
+}
+
+.create:active {
+  border: 1px inset #ff4455;
+  background-color: #ee3344;
 }
 
 
