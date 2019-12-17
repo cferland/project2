@@ -155,9 +155,11 @@ class Form extends Component {
               return (<Proficiencies key={index} class={this.state.class.name} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
             })}
             </div>
-            <Link to="/character" onClick={(e) => this.createCharacter(e)}>
-              <button>Create Character</button>
-            </Link>
+            {this.state.race.name && this.state.class.name &&
+              <Link to="/character" onClick={(e) => this.createCharacter(e)}>
+                <button>Create Character</button>
+              </Link>
+            }
           </form>
         } />
         <Route path="/character" render={(props) =>
