@@ -139,12 +139,41 @@ button:focus {
   padding-left: 10px;
 }
 
-.selected {
-  font-weight: bold;
+.character-sheet {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
-.unselected {
-  color: #666;
+.skills {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: justify;
+  text-align: left;
+  max-width: 450px;
+}
+
+.skills li {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 135px;
+  margin-left: 15px;
+}
+
+.selected, .unselected {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px inset #eeddcc;
+  border-radius: 8px;
+  margin-right: 8px;
+  background-color: #ffffff;
+}
+
+.selected {
+  background-color: #222222;
+  border: 1px outset #554444;
 }
 
 
