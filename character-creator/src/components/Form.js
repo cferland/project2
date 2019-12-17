@@ -104,6 +104,8 @@ class Form extends Component {
     let proficiencies = this.state.proficiencies;
     this.state.class.proficiencies.forEach((proficiency) => proficiencies.push(proficiency.name));
     this.state.race.starting_proficiencies.forEach((proficiency) => proficiencies.push(proficiency.name));
+    let savingThrows = this.state.class.saving_throws;
+    this.state.class.saving_throws.forEach((save) => savingThrows.push(save.name));
     let modifiers = {
       str: Math.floor((this.state.abilities.str - 10) / 2),
       dex: Math.floor((this.state.abilities.dex - 10) / 2),
@@ -118,6 +120,7 @@ class Form extends Component {
       proficiencies: proficiencies,
       abilities: this.state.abilities,
       modifiers: modifiers,
+      savingThrows: savingThrows,
       race: this.state.race.name,
       class: this.state.class.name
     }
