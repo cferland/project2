@@ -132,7 +132,7 @@ class Form extends Component {
       <div>
         <Route exact default path="/" render={(props) =>
           <form>
-            <input type="text" onChange={(e) => this.setState({name: e.target.value})} placeholder="Character Name" />
+            <input className="name-input" type="text" onChange={(e) => this.setState({name: e.target.value})} placeholder="Character Name" />
             {this.state.races.length > 0 &&
               <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
                 <option disabled>Pick a Race</option>

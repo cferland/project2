@@ -1,7 +1,7 @@
 header {
   text-align: center;
   background-color: #554444;
-  color: #eeeeee;
+  color: #ffffff;
   font-size: 35px;
   padding: 25px;
 }
@@ -25,11 +25,46 @@ ul {
 
 form {
   padding: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+select {
+  border: 1px inset #eeddcc;
+  color: #222222;
+  width: 150px;
+  height: 25px;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+input:focus {
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
 }
 
 .App {
   text-align: center;
   color: #222222;
+}
+
+.name-input {
+  width: 240px;
+  text-align: center;
+  margin-bottom: 5px;
+  height: 25px;
+  border: 1px inset #eeddcc;
+  border-radius: 3px;
+  color: #222222;
+  font-size: 12px;
 }
 
 .scores {
@@ -48,6 +83,24 @@ form {
   flex-flow: row nowrap;
   justify-content: space-between;
   width: 100px;
+  font-weight: bold;
+}
+
+.scores button {
+  width: 20px;
+  height: 20px;
+  border: 1px outset #eeddcc;
+  background-color: #ffffff;
+  color: #222222;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 0px;
+  font-size: 12px;
+  padding: 0;
+}
+
+.scores button:active {
+  border: 1px inset #eeddcc;
 }
 
 .proficiencies {
@@ -70,7 +123,9 @@ form {
   display: flex;
   flex-flow: row wrap;
   justify-content: justify;
-  border: 1px inset #eeddcc;
+  border: 1px inset #ffeedd;
+  border-radius: 3px;
+  background-color: #eeddcc;
   padding: 15px;
 }
 
