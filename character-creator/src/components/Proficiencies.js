@@ -43,22 +43,24 @@ class Proficiencies extends Component {
 
   render() {
     return (
-      <div>
+      <div className="choice-groups">
         <h5>Choose {this.props.choiceSet.choose}</h5>
-        {this.props.choiceSet.from.map((option, index) => {
-          return (
-            <div key={index + this.props.class}>
-              <input
-                type="checkbox"
-                onClick={(event) => this.limitCheck(event)}
-                onChange={this.props.handleCheck}
-                name={option.name}
-                value={option.url}
-              />
-              {option.name}
-            </div>
-          )
-        })}
+        <div className="choices">
+          {this.props.choiceSet.from.map((option, index) => {
+            return (
+              <div key={index + this.props.class} className="checkbox">
+                <input
+                  type="checkbox"
+                  onClick={(event) => this.limitCheck(event)}
+                  onChange={this.props.handleCheck}
+                  name={option.name}
+                  value={option.url}
+                />
+                {option.name}
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
