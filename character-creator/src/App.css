@@ -6,31 +6,59 @@ header {
   padding: 25px;
 }
 
+h5 {
+  padding-left: 28px;
+  margin: 0px 0 10px 0;
+  font-size: 15px;
+}
+
 ul {
   list-style: none;
   padding: 10px;
   margin: 0;
 }
 
+form {
+  padding: 20px;
+}
+
 .App {
   text-align: center;
+  color: #222222;
+}
+
+.proficiencies {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  
 }
 
 .choice-groups {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
+  text-align: left;
+  align-content: flex-start;
+  max-width: 600px; 
+  border: 1px inset #eeddcc;
+  padding: 10px;
+  margin: 10px;
 }
 
 .choices {
   display: flex;
   flex-flow: row wrap;
-  margin-left: 50px;
   justify-content: justify;
 }
 
 .checkbox {
   width: 200px;
-  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.option {
+  padding-left: 10px;
 }
 
 .selected {

@@ -44,7 +44,7 @@ class Proficiencies extends Component {
   render() {
     return (
       <div className="choice-groups">
-        <h5>Choose {this.props.choiceSet.choose}</h5>
+        <h5>Choose {this.props.choiceSet.choose} from...</h5>
         <div className="choices">
           {this.props.choiceSet.from.map((option, index) => {
             return (
@@ -56,7 +56,7 @@ class Proficiencies extends Component {
                   name={option.name}
                   value={option.url}
                 />
-                {option.name}
+                <span className="option">{option.name}</span>
               </div>
             )
           })}

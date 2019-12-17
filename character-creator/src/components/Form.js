@@ -52,7 +52,7 @@ class Form extends Component {
         int: 8 + newRace.data.ability_bonuses[3],
         wis: 8 + newRace.data.ability_bonuses[4],
         cha: 8 + newRace.data.ability_bonuses[5]
-      } 
+      }
     })
     console.log(this.state.race);
     console.log(this.state.abilities);
@@ -91,10 +91,10 @@ class Form extends Component {
     if (operator === 'plus' && score < (18 + this.state.race.ability_bonuses[index])) {
       score++;
     }
-    this.setState(prevState =>({
+    this.setState(prevState => ({
       abilities: {
         ...prevState.abilities,
-        [ability]: score 
+        [ability]: score
       },
     }))
   }
@@ -122,7 +122,7 @@ class Form extends Component {
     this.setState({
       character: character
     })
-    
+
   }
 
   render() {
@@ -144,18 +144,20 @@ class Form extends Component {
                   return (<option key={index} value={index + 1}>{option.name}</option>)
                 })}
               </select>}
-            {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
-              return (<Proficiencies key={index} class={this.state.class.name} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
-            })}
             {this.state.race.ability_bonuses &&
               <AbilityScores abilities={this.state.abilities} abilityButton={this.abilityButton} />
             }
+            <div className="proficiencies">
+            {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
+              return (<Proficiencies key={index} class={this.state.class.name} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
+            })}
+            </div>
             <Link to="/character" onClick={(e) => this.createCharacter(e)}>
               <button>Create Character</button>
             </Link>
           </form>
         } />
-        <Route path="/character" render={(props) => 
+        <Route path="/character" render={(props) =>
           this.state.character.abilities ? <CharacterSheet character={this.state.character} /> : <Link to="/">Go Back</Link>
         } />
       </div>
