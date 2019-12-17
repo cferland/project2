@@ -145,6 +145,47 @@ button:focus {
   align-items: center;
 }
 
+.character-sheet h1 {
+  margin: 30px 50px 0 50px;
+  font-size: 30px;
+}
+
+.character-sheet h2 {
+  margin: 20px 15px 5px 15px;
+  font-size: 18px;
+}
+
+.character-sheet h3 {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.character-sheet h4 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.abilities {
+  text-align: justify;
+  width: 180px;
+}
+
+.abilities li {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.abilities p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.ability {
+  font-weight: bold;
+}
+
 .skills {
   display: flex;
   flex-flow: row wrap;
