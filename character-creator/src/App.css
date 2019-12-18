@@ -69,6 +69,23 @@ button:focus {
   font-size: 12px;
 }
 
+.alignment {
+  max-width: 450px;
+  margin-top: 25px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: justify;
+}
+
+.alignment div {
+  text-align: left;
+  width: 150px;
+}
+
+.alignment input {
+  margin-right: 10px;
+}
+
 .scores {
   display: flex;
   flex-flow: column wrap;

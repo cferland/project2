@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Link, Redirect } from 'react-router-dom';
 
+import Alignment from './Alignment';
 import Proficiencies from './Proficiencies';
 import AbilityScores from './AbilityScores';
 import CharacterSheet from './CharacterSheet';
@@ -15,6 +16,7 @@ class Form extends Component {
       name: '',
       races: [],
       classes: [],
+      alignment: '',
       race: {},
       class: {},
       proficiencies: [],
@@ -30,6 +32,7 @@ class Form extends Component {
     }
 
     this.handleCheck = this.handleCheck.bind(this);
+    this.handleRadio = this.handleRadio.bind(this);
     this.abilityButton = this.abilityButton.bind(this);
   }
 
@@ -83,6 +86,12 @@ class Form extends Component {
     })
   }
 
+  handleRadio(e) {
+    this.setState({
+      alignment: e.target.value
+    })
+  }
+
   abilityButton(e, operator, ability, index) {
     e.preventDefault();
     let score = this.state.abilities[ability];
@@ -116,6 +125,7 @@ class Form extends Component {
     }
     let character = {
       name: this.state.name,
+      alignment: this.state.alignment,
       hitDie: this.state.class.hit_die,
       proficiencies: proficiencies,
       abilities: this.state.abilities,
@@ -150,6 +160,9 @@ class Form extends Component {
                   return (<option key={index} value={index + 1}>{option.name}</option>)
                 })}
               </select>}
+            {this.state.race.alignment &&
+              <Alignment alignment={this.state.race.alignment} handleRadio={this.handleRadio} />
+            }
             {this.state.race.ability_bonuses &&
               <AbilityScores abilities={this.state.abilities} abilityButton={this.abilityButton} />
             }
@@ -158,7 +171,7 @@ class Form extends Component {
               return (<Proficiencies key={index} class={this.state.class.name} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
             })}
             </div>
-            {this.state.race.name && this.state.class.name &&
+            {this.state.race.name && this.state.class.name && this.state.alignment !== '' &&
               <Link to="/character" onClick={(e) => this.createCharacter(e)}>
                 <button className="create">Finish</button>
               </Link>
