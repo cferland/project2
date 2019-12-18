@@ -213,23 +213,23 @@ button:focus {
   font-weight: bold;
 }
 
-.skills {
+.sheet-list {
   display: flex;
   flex-flow: row wrap;
   justify-content: justify;
+  max-width: 500px;
   text-align: left;
-  max-width: 450px;
 }
 
-.skills li {
+.sheet-list li {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  width: 135px;
+  width: 150px;
   margin-left: 15px;
 }
 
-.selected, .unselected {
+.selected, .unselected, .spacer {
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -242,6 +242,11 @@ button:focus {
 .selected {
   background-color: #222222;
   border: 1px outset #554444;
+}
+
+.spacer {
+  border: 1px solid #eeddcc;
+  background-color: #eeddcc;
 }
 
 .create {
