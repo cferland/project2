@@ -132,7 +132,9 @@ class Form extends Component {
       modifiers: modifiers,
       savingThrows: savingThrows,
       race: this.state.race.name,
-      class: this.state.class.name
+      class: this.state.class.name,
+      languages: this.state.race.languages,
+      traits: this.state.race.traits
     }
     this.setState({
       character: character

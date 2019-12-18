@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Traits from './Traits';
+
 function CharacterSheet(props) {
   return (
     <div className="character-sheet">
@@ -171,6 +173,7 @@ function CharacterSheet(props) {
           )
         })}
       </ul>
+      <Traits languages={props.character.languages} traits={props.character.traits} />
     </div>
   )
 }

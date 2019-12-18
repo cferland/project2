@@ -4,7 +4,7 @@ function Traits(props) {
   return (
     <div>
       <h2>Racial Traits</h2>
-      {props.race.traits.map((trait, index) => {
+      {props.traits.map((trait, index) => {
         return (
           <div key={index}>
             <p>{trait.name}</p>
@@ -12,7 +12,7 @@ function Traits(props) {
         )
       })}
       <h2>Languages</h2>
-      {props.race.languages.map((language, index) => {
+      {props.languages.map((language, index) => {
         return (
           <div key={index}>
             <p>{language.name}</p>
