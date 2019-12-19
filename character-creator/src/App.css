@@ -227,6 +227,7 @@ button:focus {
   align-items: center;
   width: 150px;
   margin-left: 15px;
+  margin-bottom: 10px;
 }
 
 .selected, .unselected, .spacer {
@@ -271,5 +272,15 @@ button:focus {
   background-color: #ee3344;
 }
 
+@media (max-width: 575px) { 
+  .sheet-list {
+    flex-flow: column nowrap;
+  }
+ }
 
+@media (max-width: 505px) { 
+  .alignment {
+    flex-flow: column nowrap;
+  }
+ }
 
