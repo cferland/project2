@@ -19,6 +19,7 @@ class Form extends Component {
       alignment: '',
       race: {},
       class: {},
+      level: {},
       proficiencies: [],
       abilities: {
         str: 0,
@@ -64,10 +65,14 @@ class Form extends Component {
 
   async pickClass(e) {
     let newClass = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/classes/${e.target.value}`);
+    let name = newClass.data.name;
+    let level = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/classes/${name.toLowerCase()}/level/1`);
     this.setState({
-      class: newClass.data
+      class: newClass.data,
+      level: level.data
     })
     console.log(this.state.class);
+    console.log(this.state.level);
   }
 
   handleCheck(e) {
@@ -134,7 +139,8 @@ class Form extends Component {
       race: this.state.race.name,
       class: this.state.class.name,
       languages: this.state.race.languages,
-      traits: this.state.race.traits
+      traits: this.state.race.traits,
+      features: this.state.level.features
     }
     this.setState({
       character: character
@@ -159,7 +165,7 @@ class Form extends Component {
               <select onChange={(e) => this.pickClass(e)} defaultValue="Pick a Class">
                 <option disabled>Pick a Class</option>
                 {this.state.classes.map((option, index) => {
-                  return (<option key={index} value={index + 1}>{option.name}</option>)
+                  return (<option key={index} name={option.name} value={index + 1}>{option.name}</option>)
                 })}
               </select>}
             {this.state.race.alignment &&

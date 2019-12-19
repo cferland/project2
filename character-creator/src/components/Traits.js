@@ -3,6 +3,18 @@ import React from 'react';
 function Traits(props) {
   return (
     <div>
+      <h2>Features</h2>
+      <ul className="sheet-list">
+        {props.features.map((feature, index) => {
+          return (
+            <li key={index}>
+              <div className="spacer">
+              </div>
+              {feature.name}
+            </li>
+          )
+        })}
+      </ul>
       {props.traits.length > 0 &&
         <h2>Racial Traits</h2>}
       {props.traits.length > 0 &&

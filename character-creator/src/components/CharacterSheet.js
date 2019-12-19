@@ -165,7 +165,7 @@ function CharacterSheet(props) {
           Performance
         </li>
       </ul>
-      <Traits languages={props.character.languages} traits={props.character.traits} proficiencies={props.character.proficiencies} />
+      <Traits languages={props.character.languages} features={props.character.features} traits={props.character.traits} proficiencies={props.character.proficiencies} />
     </div>
   )
 }
