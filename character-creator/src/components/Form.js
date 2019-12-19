@@ -163,7 +163,13 @@ class Form extends Component {
       features: features
     }
     this.setState({
-      character: character
+      character: character,
+      name: '',
+      alignment: '',
+      race: {},
+      class: {},
+      level: {},
+      proficiencies: []
     })
 
   }
@@ -171,15 +177,15 @@ class Form extends Component {
   render() {
     return (
       <div>
-        <Route exact default path="/" render={(props) =>
+        <Route exact path="/" render={(props) =>
           <form>
             <div className="instructions">
               <p>Welcome to the Dungeons & Dragons Character Creator!</p>
               <p>
-                Enter a name, select your preferred race and class, then choose your character's alignment.
+                Begin by entering a name, selecting your preferred race and class, then choosing your character's alignment.
                 From there, you will be able to modify their attributes and select any relevant proficiencies.
+                Once you are finished, click the button that appears to generate your character sheet!
               </p>
-              <p>Once you are finished, click the button that appears at the bottom to generate your own character sheet!</p>
             </div>
             <input className="name-input" type="text" onChange={(e) => this.setState({ name: e.target.value })} placeholder="Character Name" />
             {this.state.races.length > 0 &&
