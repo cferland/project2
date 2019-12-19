@@ -59,10 +59,9 @@ class Form extends Component {
         int: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[3],
         wis: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[4],
         cha: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[5]
-      }
+      },
+      points: 0
     })
-    console.log(this.state.race);
-    console.log(this.state.abilities);
   }
 
   async pickClass(e) {
@@ -73,8 +72,6 @@ class Form extends Component {
       class: newClass.data,
       level: level.data
     })
-    console.log(this.state.class);
-    console.log(this.state.level);
   }
 
   handleCheck(e) {
@@ -176,6 +173,14 @@ class Form extends Component {
       <div>
         <Route exact default path="/" render={(props) =>
           <form>
+            <div className="instructions">
+              <p>Welcome to the Dungeons & Dragons Character Creator!</p>
+              <p>
+                Enter a name, select your preferred race and class, then choose your character's alignment.
+                From there, you will be able to modify their attributes and select any relevant proficiencies.
+              </p>
+              <p>Once you are finished, click the button that appears at the bottom to generate your own character sheet!</p>
+            </div>
             <input className="name-input" type="text" onChange={(e) => this.setState({ name: e.target.value })} placeholder="Character Name" />
             {this.state.races.length > 0 &&
               <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
@@ -210,7 +215,7 @@ class Form extends Component {
           </form>
         } />
         <Route path="/character" render={(props) =>
-          this.state.character.abilities ? <CharacterSheet character={this.state.character} /> : <Redirect to="/">Go Back</Redirect>
+          this.state.character.abilities ? <CharacterSheet character={this.state.character} /> : <Redirect to="/" />
         } />
       </div>
     )
