@@ -63,7 +63,7 @@ class AbilityScores extends Component {
             </li>
           </div>
         </ul>
-        <button>Reroll Scores</button>
+        <button className="reroll" onClick={(e) => this.props.reroll(e)}>Reroll Scores</button>
       </div>
     )
   }

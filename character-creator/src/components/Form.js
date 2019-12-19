@@ -36,6 +36,7 @@ class Form extends Component {
     this.handleCheck = this.handleCheck.bind(this);
     this.handleRadio = this.handleRadio.bind(this);
     this.abilityButton = this.abilityButton.bind(this);
+    this.reroll = this.reroll.bind(this);
   }
 
   async componentDidMount() {
@@ -52,12 +53,12 @@ class Form extends Component {
     this.setState({
       race: newRace.data,
       abilities: {
-        str: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[0],
-        dex: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[1],
-        con: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[2],
-        int: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[3],
-        wis: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[4],
-        cha: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[5]
+        str: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[0],
+        dex: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[1],
+        con: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[2],
+        int: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[3],
+        wis: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[4],
+        cha: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[5]
       }
     })
     console.log(this.state.race);
@@ -117,6 +118,21 @@ class Form extends Component {
       },
       points: points
     }))
+  }
+
+  reroll(e) {
+    e.preventDefault();
+    this.setState({
+      abilities: {
+        str: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[0],
+        dex: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[1],
+        con: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[2],
+        int: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[3],
+        wis: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[4],
+        cha: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[5]
+      },
+      points: 0
+    })
   }
 
   createCharacter(e) {
@@ -179,7 +195,7 @@ class Form extends Component {
               <Alignment alignment={this.state.race.alignment} handleRadio={this.handleRadio} />
             }
             {this.state.race.ability_bonuses &&
-              <AbilityScores points={this.state.points} abilities={this.state.abilities} abilityButton={this.abilityButton} />
+              <AbilityScores points={this.state.points} abilities={this.state.abilities} abilityButton={this.abilityButton} reroll={this.reroll} />
             }
             <div className="proficiencies">
               {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {

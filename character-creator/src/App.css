@@ -116,7 +116,6 @@ button:focus {
   width: 20px;
   height: 20px;
   border: 1px outset #eeddcc;
-  background-color: #ffffff;
   color: #222222;
   border-radius: 3px;
   text-align: center;
@@ -127,6 +126,15 @@ button:focus {
 
 .scores button:active {
   border: 1px inset #eeddcc;
+}
+
+.reroll {
+  border: 1px outset #eeddcc;
+  border-radius: 3px;
+  color: #222222;
+  height: 25px;
+  font-size: 12px;
+  margin-bottom: 15px;
 }
 
 .proficiencies {
