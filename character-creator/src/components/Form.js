@@ -29,6 +29,7 @@ class Form extends Component {
         wis: 0,
         cha: 0
       },
+      points: 0,
       character: {}
     }
 
@@ -51,12 +52,12 @@ class Form extends Component {
     this.setState({
       race: newRace.data,
       abilities: {
-        str: 8 + newRace.data.ability_bonuses[0],
-        dex: 8 + newRace.data.ability_bonuses[1],
-        con: 8 + newRace.data.ability_bonuses[2],
-        int: 8 + newRace.data.ability_bonuses[3],
-        wis: 8 + newRace.data.ability_bonuses[4],
-        cha: 8 + newRace.data.ability_bonuses[5]
+        str: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[0],
+        dex: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[1],
+        con: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[2],
+        int: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[3],
+        wis: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[4],
+        cha: (Math.floor(Math.random() * (18 - 3 + 1)) + 3) + newRace.data.ability_bonuses[5]
       }
     })
     console.log(this.state.race);
@@ -100,17 +101,21 @@ class Form extends Component {
   abilityButton(e, operator, ability, index) {
     e.preventDefault();
     let score = this.state.abilities[ability];
+    let points = this.state.points;
     if (operator === 'minus' && score > 0) {
       score--;
+      points++;
     }
-    if (operator === 'plus' && score < (18 + this.state.race.ability_bonuses[index])) {
+    if (operator === 'plus' && score < (18 + this.state.race.ability_bonuses[index]) && points > 0) {
       score++;
+      points--;
     }
     this.setState(prevState => ({
       abilities: {
         ...prevState.abilities,
         [ability]: score
       },
+      points: points
     }))
   }
 
@@ -128,6 +133,8 @@ class Form extends Component {
       wis: Math.floor((this.state.abilities.wis - 10) / 2),
       cha: Math.floor((this.state.abilities.cha - 10) / 2)
     }
+    let features = this.state.level.features;
+    this.state.level.feature_choices.forEach((feature) => features.push(feature));
     let character = {
       name: this.state.name,
       alignment: this.state.alignment,
@@ -140,7 +147,7 @@ class Form extends Component {
       class: this.state.class.name,
       languages: this.state.race.languages,
       traits: this.state.race.traits,
-      features: this.state.level.features
+      features: features
     }
     this.setState({
       character: character
@@ -153,7 +160,7 @@ class Form extends Component {
       <div>
         <Route exact default path="/" render={(props) =>
           <form>
-            <input className="name-input" type="text" onChange={(e) => this.setState({name: e.target.value})} placeholder="Character Name" />
+            <input className="name-input" type="text" onChange={(e) => this.setState({ name: e.target.value })} placeholder="Character Name" />
             {this.state.races.length > 0 &&
               <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
                 <option disabled>Pick a Race</option>
@@ -172,12 +179,12 @@ class Form extends Component {
               <Alignment alignment={this.state.race.alignment} handleRadio={this.handleRadio} />
             }
             {this.state.race.ability_bonuses &&
-              <AbilityScores abilities={this.state.abilities} abilityButton={this.abilityButton} />
+              <AbilityScores points={this.state.points} abilities={this.state.abilities} abilityButton={this.abilityButton} />
             }
             <div className="proficiencies">
-            {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
-              return (<Proficiencies key={index} class={this.state.class.name} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
-            })}
+              {this.state.class.proficiency_choices && this.state.class.proficiency_choices.map((choiceSet, index) => {
+                return (<Proficiencies key={index} class={this.state.class.name} choiceSet={choiceSet} handleCheck={this.handleCheck} />)
+              })}
             </div>
             {this.state.race.name && this.state.class.name && this.state.alignment !== '' &&
               <Link to="/character" onClick={(e) => this.createCharacter(e)}>
