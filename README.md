@@ -71,6 +71,7 @@ _Component Breakdown_
 - Code clean-up & DRY check.
 - Convert Ability Scores to a functional component.
 - Prefix CSS for cross-browser compatibility.
+- Add artwork!
 
 
 #### Future Goals
