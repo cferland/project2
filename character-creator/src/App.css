@@ -217,6 +217,16 @@ button:focus {
   font-size: 15px;
 }
 
+.icon {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 40px;
+}
+
+.last {
+  margin-bottom: 0px;
+}
+
 .abilities {
   text-align: justify;
   width: 180px;

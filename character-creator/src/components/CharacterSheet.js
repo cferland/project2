@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDungeon, faDiceD20, faHatWizard } from '@fortawesome/free-solid-svg-icons'
 
 import Traits from './Traits';
 
@@ -9,7 +11,7 @@ function CharacterSheet(props) {
       <h3>{props.character.alignment} {props.character.race} {props.character.class}</h3>
       <h4>Hit Points: {props.character.hitDie + props.character.modifiers.con} (1d{props.character.hitDie})</h4>
       <h4>Armor Class: {10 + props.character.modifiers.dex}</h4>
-      <h2>Ability Scores</h2>
+      <span className="icon"><FontAwesomeIcon icon={faDiceD20} /></span>
       <ul className="abilities">
         <li>
           <span className="ability">
@@ -72,7 +74,7 @@ function CharacterSheet(props) {
           </p>
         </li>
       </ul>
-      <h2>Skills</h2>
+      <span className="icon"><FontAwesomeIcon icon={faDungeon} /></span>
       <ul className="sheet-list">
         <li>
           <div className={props.character.proficiencies.includes('Skill: Athletics') ? "selected" : "unselected"}>
@@ -165,6 +167,7 @@ function CharacterSheet(props) {
           Performance
         </li>
       </ul>
+      <span className="icon last"><FontAwesomeIcon icon={faHatWizard} flip="horizontal" /></span>
       <Traits languages={props.character.languages} features={props.character.features} traits={props.character.traits} proficiencies={props.character.proficiencies} />
     </div>
   )
