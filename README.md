@@ -1,10 +1,8 @@
 # **D&D Character Creator**
 
-## Project Planning
-
 ### Overview
 
-A React application which will provide an interface for creating a character for the tabletop roleplaying game known as "Dungeons & Dragons".
+A React application which provides an interface for creating a character for the tabletop roleplaying game known as "Dungeons & Dragons".
 
 
 ### Wireframes
@@ -13,16 +11,17 @@ A React application which will provide an interface for creating a character for
 ![](/images/wireframes.png)
 
 
-### MVP
+### Description
 
-To provide a minimum viable product, this application will need to include a complete form for users to select several character options from, as well as a page displaying the aggregate of their selections once they have submitted the form.
+This application includes a complete form for users to select several character options from, as well as a page displaying the aggregate of their selections once they have submitted the form.
 
-#### Goals
+#### Features
 
-- Pull data from an API to populate a Character Creation form with text inputs, checkboxes, drop-downs, and buttons.
-- Track all user selections within state to produce a complete "Character Sheet" upon submission.
-- Combine necessary data from selections to calculate ability scores and other character details.
-- Allow user to select from a checklist of skills, limiting their selections to the appropriate number of choices allowed.
+- Pulls data from an API to populate a character creation form with text input, checkboxes, drop-downs, and radio buttons.
+- Tracks all user selections within state to produce a complete "Character Sheet" upon submission.
+- Mimics a dice roll by generating random ability scores, and allows the use to redistribute points as desired.
+- Combines necessary data from selections to calculate ability modifiers and render character details.
+- Allows user to select from a checklist of skills, limiting their selections to the appropriate number of choices allowed.
 
 #### Libraries
 
@@ -41,15 +40,14 @@ _Component Hierarchy_
 
 ```
 src
-|__ assets/
-      |__ images
 |__ components/
-      |__ Header.jsx
-      |__ CharacterSheet.jsx
-      |__ Form.jsx
-      |__ AbilityScores.jsx
-      |__ Skills.jsx
-      |__ Footer.jsx
+      |__ Header.js
+      |__ Form.js
+      |__ CharacterSheet.js
+      |__ Alignment.js
+      |__ AbilityScores.js
+      |__ Proficiencies.js
+      |__ Traits.js
 ```
 
 _Component Breakdown_
@@ -57,19 +55,23 @@ _Component Breakdown_
 
 |  Component   |    Type    | state | props | Description                                                      |
 | :----------: | :--------: | :---: | :---: | :--------------------------------------------------------------- |
-|    Header    | functional |   n   |   n   | _The header will contain the navigation and title._               |
-|  Form  | class |   y   |   y   | _The form will hold all character options and the character state._       |
-|   Ability Scores    |   class    |   y   |   y   | _Ability Scores will handle selection of ability scores and the methods to increase and decrease them._      |
-| Skills | class |   y   |   y   | _Skills will handle selection of character skills and limiting the number of choices._                 |
-| Character Sheet | function |   n   |   y   | _The Character Sheet will render the character information once the form is submitted._                 |
-|    Footer    | functional |   n   |   n   | _The footer will show copyright information._ |
+|    Header    | functional |   n   |   n   | _The header contains the page header and title._               |
+|  Form  | class |   y   |   y   | _The form holds all character options and the character state._       |
+|  Alignment  | function |   n   |   y   | _Alignment holds all the form elements pertaining to selection of character alignment._       |
+|   Ability Scores    |   class    |   n   |   y   | _Ability Scores handles selection of ability scores._      |
+| Proficiencies | class |   y   |   y   | _Proficiencies handles selection of character skills and limiting the number of choices._                 |
+| Character Sheet | function |   n   |   y   | _The Character Sheet renders the character information once the form is submitted._                 |
+|    Traits    | functional |   n   |   y   | _Traits contains the traits, features, and proficiencies section of the character sheet._ |
 
 
 ### Post-MVP
 
-#### Goals
+#### Future Goals
 
+- Switch over to an alternative API or add a second API so that the following can be included:
+  - Spell selection for classes with spellcasting features.
+  - Descriptions for racial traits and class features.
+  - Improved handling of ability bonuses, proficiency selection, etc.
 - Add ability to create and save multiple characters.
-- Implement dice-rolling functionality for generating ability scores.
 - Incorporate random name generator for new characters.
-- Add ability to automatically level up characters and render an updated character sheet.
+- Add functionality for leveling up characters and updating the character sheet appropriately.
