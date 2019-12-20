@@ -184,7 +184,7 @@ class Form extends Component {
               <p>
                 Begin by entering a name, selecting your preferred race and class, then choosing your character's alignment.
                 From there, you will be able to modify their attributes and select any relevant proficiencies.
-                Once you are finished, click the button that appears to generate your character sheet!
+                Once you are finished, click the button that appears to generate your character sheet.
               </p>
             </div>
             <input className="name-input" type="text" onChange={(e) => this.setState({ name: e.target.value })} placeholder="Character Name" />

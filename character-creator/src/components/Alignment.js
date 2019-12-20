@@ -7,7 +7,7 @@ function Alignment(props) {
         <input type="radio" onChange={props.handleRadio} name="alignment" value="Lawful Good" />
         Lawful Good
       </div>
-      <div title="Neutral Good are generous and sincere.">
+      <div title="Neutral Good characters are generous and sincere.">
         <input type="radio" onChange={props.handleRadio} name="alignment" value="Neutral Good" />
         Neutral Good
       </div>
