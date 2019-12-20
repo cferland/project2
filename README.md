@@ -4,6 +4,7 @@
 
 A React application which provides an interface for creating a character for the tabletop roleplaying game known as "Dungeons & Dragons".
 
+Live Site: http://dnd-char-creator.surge.sh/
 
 ### Wireframes
 
@@ -65,6 +66,12 @@ _Component Breakdown_
 
 
 ### Post-MVP
+
+#### To Do
+- Code clean-up & DRY check.
+- Convert Ability Scores to a functional component.
+- Prefix CSS for cross-browser compatibility.
+
 
 #### Future Goals
 
