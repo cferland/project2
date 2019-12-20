@@ -3,7 +3,7 @@ import React from 'react';
 function Header() {
   return (
     <header>
-      Character Creator
+      <span className="header">Character Creator</span>
     </header>
   )
 }

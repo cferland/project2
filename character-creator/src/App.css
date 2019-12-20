@@ -58,6 +58,10 @@ button:focus {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.header {
+  font-weight: bold;
+}
+
 .instructions {
   max-width: 700px;
   margin-bottom: 10px;
