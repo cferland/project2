@@ -50,15 +50,16 @@ class Form extends Component {
 
   async pickRace(e) {
     let newRace = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/races/${e.target.value}`);
+    console.log(newRace);
     this.setState({
       race: newRace.data,
       abilities: {
-        str: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[0],
-        dex: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[1],
-        con: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[2],
-        int: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[3],
-        wis: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[4],
-        cha: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + newRace.data.ability_bonuses[5]
+        str: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        dex: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        con: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        int: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        wis: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        cha: (Math.floor(Math.random() * (18 - 6 + 1)) + 6)
       },
       points: 0
     })
@@ -67,7 +68,7 @@ class Form extends Component {
   async pickClass(e) {
     let newClass = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/classes/${e.target.value}`);
     let name = newClass.data.name;
-    let level = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/classes/${name.toLowerCase()}/level/1`);
+    let level = await axios.get(`https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/classes/${name.toLowerCase()}/levels/1`);
     this.setState({
       class: newClass.data,
       level: level.data
@@ -104,7 +105,7 @@ class Form extends Component {
       score--;
       points++;
     }
-    if (operator === 'plus' && score < (18 + this.state.race.ability_bonuses[index]) && points > 0) {
+    if (operator === 'plus' && score < (20) && points > 0) {
       score++;
       points--;
     }
@@ -121,12 +122,12 @@ class Form extends Component {
     e.preventDefault();
     this.setState({
       abilities: {
-        str: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[0],
-        dex: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[1],
-        con: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[2],
-        int: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[3],
-        wis: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[4],
-        cha: (Math.floor(Math.random() * (18 - 6 + 1)) + 6) + this.state.race.ability_bonuses[5]
+        str: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        dex: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        con: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        int: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        wis: (Math.floor(Math.random() * (18 - 6 + 1)) + 6),
+        cha: (Math.floor(Math.random() * (18 - 6 + 1)) + 6)
       },
       points: 0
     })
@@ -192,14 +193,14 @@ class Form extends Component {
               <select onChange={(e) => this.pickRace(e)} defaultValue="Pick a Race">
                 <option disabled>Pick a Race</option>
                 {this.state.races.map((option, index) => {
-                  return (<option key={index} value={index + 1}>{option.name}</option>)
+                  return (<option key={index} value={option.name.toLowerCase()}>{option.name}</option>)
                 })}
               </select>}
             {this.state.classes.length > 0 &&
               <select onChange={(e) => this.pickClass(e)} defaultValue="Pick a Class">
                 <option disabled>Pick a Class</option>
                 {this.state.classes.map((option, index) => {
-                  return (<option key={index} name={option.name} value={index + 1}>{option.name}</option>)
+                  return (<option key={index} name={option.name} value={option.name.toLowerCase()}>{option.name}</option>)
                 })}
               </select>}
             {this.state.race.alignment &&
